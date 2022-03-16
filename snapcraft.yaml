@@ -1,10 +1,22 @@
 name: rabbitmq-test-tool
+contact: nicolas.bock@canonical.com
+issues: https://github.com/nicolasbock/rabbitmq-test-tool/issues
+source-code: https://github.com/nicolasbock/rabbitmq-test-tool.git
 summary: RabbitMQ-Test-Tool
 description: |
-  A simple test script to test a RabbitMQ cluster
+  A simple test script to test a RabbitMQ cluster.
+icon: rabbit.png
 base: core18
 confinement: strict
 adopt-info: rabbitmq-test-tool
+license: BSD-3-Clause
+grade: devel
+
+apps:
+  rabbitmq-test-tool:
+    command: bin/rabbitmq-test-tool
+    plugs:
+      - network-bind
 
 parts:
   rabbitmq-test-tool:
@@ -17,9 +29,3 @@ parts:
     override-pull: |
       snapcraftctl pull
       snapcraftctl set-version "$(bin/get_version.py)"
-
-apps:
-  rabbitmq-test-tool:
-    command: bin/rabbitmq-test-tool
-    plugs:
-      - network-bind
