@@ -10,7 +10,6 @@ base: core18
 confinement: strict
 adopt-info: rabbitmq-test-tool
 license: BSD-3-Clause
-grade: devel
 
 apps:
   rabbitmq-test-tool:
