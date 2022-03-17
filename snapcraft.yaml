@@ -10,12 +10,14 @@ base: core18
 confinement: strict
 adopt-info: rabbitmq-test-tool
 license: BSD-3-Clause
+grade: stable
 
 apps:
   rabbitmq-test-tool:
     command: bin/rabbitmq-test-tool
     plugs:
       - network-bind
+      - docker
 
 parts:
   rabbitmq-test-tool:
