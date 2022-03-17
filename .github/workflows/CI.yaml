@@ -14,6 +14,8 @@ jobs:
         shell: bash
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Install packages
         run: sudo apt install tox
       - name: Lint the code
@@ -25,6 +27,8 @@ jobs:
         shell: bash
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Install packages
         run: sudo apt install tox
       - name: Test the code (Python 2.7)
