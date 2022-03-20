@@ -1,8 +1,14 @@
 """Test get_version."""
 
 import unittest
-from unittest import mock
-from unittest.mock import MagicMock
+
+try:
+    # python 3.4+ should use builtin unittest.mock not mock package
+    from unittest.mock import patch
+    from unittest.mock import MagicMock
+except ImportError:
+    from mock import patch
+    from mock import MagicMock
 
 from bin import get_version
 
@@ -28,14 +34,14 @@ class TestGetVersion(unittest.TestCase):
         def communicate(self):
             return ('v1.2.3+g1234567', '')
 
-    @mock.patch('bin.get_version.subprocess')
+    @patch('bin.get_version.subprocess')
     def test_get_version_run_full(self, mock_subprocess):
         """Test get_version call to git."""
         mock_subprocess.run = self.MockedSubprocess
         version = get_version.get_version()
         self.assertEqual(version, '1.2.3+g1234567')
 
-    @mock.patch('bin.get_version.subprocess')
+    @patch('bin.get_version.subprocess')
     def test_get_version_popen_full(self, mock_subprocess):
         """Test get_version call to git."""
         mock_subprocess.run = MagicMock(side_effect=AttributeError())
